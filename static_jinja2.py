@@ -24,8 +24,8 @@ def render_template():
     with open('index.html', mode='w+') as f:
       try:
         print(template.render(), file=f)
-      except TemplateNotFound:
-        print('Not found')
+      except jinja2.exceptions.TemplateNotFound as TemplateNotFound:
+        print(TemplateNotFound.name + ' not found')
       print('Rendered _index.html -> index.html')
 
 class EventHandler(FileSystemEventHandler):
