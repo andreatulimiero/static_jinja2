@@ -1,5 +1,6 @@
 import os, sys, time
 from jinja2 import Environment, PackageLoader
+import jinja2.exceptions.TemplateNotFound as TemplateNotFound
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -21,7 +22,10 @@ env = Environment(loader=PackageLoader('templates', '.'))
 def render_template():
     template = env.get_template('_index.html')
     with open('index.html', mode='w+') as f:
-      print(template.render(), file=f)
+      try:
+        print(template.render(), file=f)
+      except TemplateNotFound:
+        print('Not found')
       print('Rendered _index.html -> index.html')
 
 class EventHandler(FileSystemEventHandler):
