@@ -28,6 +28,11 @@ def render_template():
       except jinja2.exceptions.TemplateNotFound as TemplateNotFound:
         print(TemplateNotFound.name + ' not found')
         return
+      except jinja2.exceptions.TemplateSyntaxError as TemplateSyntaxError:
+        print(
+          'Wrong formatting at line ' + str(TemplateSyntaxError.lineno) + ' in ' + TemplateSyntaxError.filename +
+          ': \n\n' + TemplateSyntaxError.message + '\n'
+          )
       print('Rendered _index.html -> index.html')
 
 class EventHandler(FileSystemEventHandler):
