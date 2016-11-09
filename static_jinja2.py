@@ -20,7 +20,9 @@ env = Environment(loader=PackageLoader('templates', '.'))
 
 def render_template():
     template = env.get_template('_index.html')
-    print('Rendered _index.html -> index.html')
+    with open('index.html', mode='w+') as f:
+      print(template.render(), file=f)
+      print('Rendered _index.html -> index.html')
 
 class EventHandler(FileSystemEventHandler):
   def on_modified(self, event):
