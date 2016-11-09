@@ -1,6 +1,7 @@
 import os, sys, time
+import json
+import jinja2
 from jinja2 import Environment, PackageLoader
-import jinja2.exceptions.TemplateNotFound as TemplateNotFound
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
@@ -19,11 +20,19 @@ supported_files = ['html', 'htm']
 create_templates_folder()
 env = Environment(loader=PackageLoader('templates', '.'))
 
+def get_config_file():
+  with open('templates/.config.json') as f:
+    try:
+      return json.loads(f.read().strip())
+    except ValueError:
+      print('.config.json is malformed')
+    return {}
+
 def render_template():
     template = env.get_template('_index.html')
     with open('index.html', mode='w+') as f:
       try:
-        rendered_template = template.render()
+        rendered_template = template.render(get_config_file())
         print(rendered_template, file=f)
       except jinja2.exceptions.TemplateNotFound as TemplateNotFound:
         print(TemplateNotFound.name + ' not found')
