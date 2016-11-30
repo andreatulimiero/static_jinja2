@@ -21,6 +21,9 @@ create_templates_folder()
 env = Environment(loader=PackageLoader('templates', '.'))
 
 def get_config_file():
+  if '.config.json' not in os.listdir('templates'):
+    print('No .config.json file, ignoring')
+    return {}
   with open('templates/.config.json') as f:
     try:
       return json.loads(f.read().strip())
