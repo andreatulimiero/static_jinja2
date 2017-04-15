@@ -4,6 +4,7 @@
     </head>
     <body>
         <h1>Hello World !</h1>
-        <p>We are {{ data['debug'] }} {{ data['debug'] != True }} in debug mode</p>
+        <span>Debug mode is </span><span class="debug-button">{% if data['debug'] == True %}on{% else %}off{% endif %}</span>
+    {% include '_scripts.html' %}
     </body>
 </html>
