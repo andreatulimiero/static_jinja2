@@ -45,3 +45,6 @@ target/
 
 # dotenv
 .env
+
+# IntelliJ
+.idea
