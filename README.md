@@ -6,7 +6,7 @@ This tool helps you modularize your index page in sub-files, keeping everything 
 ### Basic compilation
 Just launch static_jinja2.py and it will watch for file changes in the templates folder and generate the output file <br/>
 ### Config file
-Through the `.config.json` file you can pass arguments to the Jinja2 engine in json format <br/>
-Then from the html files simply access them with `data[key]=value` 
+Through the `.config.json` file you can pass arguments to the Jinja2 engine in json format, then from the html 
+files simply access them with `data[key]=value` 
 ### Examples
 You can find examples in the [templates](https://github.com/andreatulimiero/static_jinja2/tree/master/templates) folder
