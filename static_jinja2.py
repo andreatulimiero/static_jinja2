@@ -20,7 +20,7 @@ def create_templates_folder():
         print('Created _index.html')
 
 
-supported_files = ['html', 'htm']
+supported_files = ['html', 'htm', 'json']
 create_templates_folder()
 env = Environment(loader=PackageLoader('templates', '.'))
 
